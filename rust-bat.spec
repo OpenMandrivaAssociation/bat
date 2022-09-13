@@ -6,8 +6,8 @@
 %global crate bat
 
 Name:           rust-%{crate}
-Version:        0.12.1
-Release:        3%{?dist}
+Version:        0.22.1
+Release:        1%{?dist}
 Summary:        cat(1) clone with wings
 
 # Upstream license specification: MIT/Apache-2.0
@@ -37,7 +37,7 @@ Summary:        %{summary}
 %license LICENSE-MIT LICENSE-APACHE
 %doc README.md
 %{_bindir}/bat
-%{_mandir}/man1/bat.1*
+%doc %{_mandir}/man1/bat.1*
 
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
@@ -58,46 +58,3 @@ install -Dpm0644 -t %{buildroot}%{_mandir}/man1 \
 %check
 %cargo_test
 %endif
-
-%changelog
-* Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.12.1-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
-
-* Wed Dec 25 09:50:18 CET 2019 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.12.1-2
-- Bump git2 to 0.11
-
-* Tue Dec 10 2019 Josh Stone <jistone@redhat.com> - 0.12.1-1
-- Update to 0.12.1
-
-* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.11.0-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
-
-* Sun Jul 14 18:28:38 CEST 2019 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.11.0-3
-- Update dirs to 2.0
-
-* Fri Jun 07 2019 Josh Stone <jistone@redhat.com> - 0.11.0-2
-- Bump git2 to 0.9
-
-* Sat Jun 01 2019 Josh Stone <jistone@redhat.com> - 0.11.0-1
-- Update to 0.11.0
-
-* Sun Feb 10 2019 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.10.0-1
-- Update to 0.10.0
-
-* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.0-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
-
-* Tue Nov 13 2018 Josh Stone <jistone@redhat.com> - 0.9.0-1
-- Update to 0.9.0
-
-* Sun Nov 04 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.8.0-1
-- Update to 0.8.0
-
-* Thu Oct 04 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.7.1-1
-- Update to 0.7.1
-
-* Thu Sep 13 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.7.0-1
-- Update to 0.7.0
-
-* Mon Sep 03 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.6.1-1
-- Initial package
