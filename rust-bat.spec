@@ -13,7 +13,7 @@ Summary:        cat(1) clone with wings
 # Upstream license specification: MIT/Apache-2.0
 License:        MIT or ASL 2.0
 URL:            https://crates.io/crates/bat
-Source0:         https://github.com/sharkdp/bat/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:         https://github.com/sharkdp/bat/archive/v%{version}/bat-%{version}.tar.gz
 Source1:        vendor.tar.xz
 
 BuildRequires:  rust-packaging
@@ -35,7 +35,7 @@ Summary:        %{summary}
 %doc %{_mandir}/man1/bat.1*
 
 %prep
-%autosetup -n %{name}-%{version}  -p1 -a 1
+%autosetup -n bat-%{version}  -p1 -a 1
 %cargo_prep -v vendor
 cat >>.cargo/config.toml <<EOF
 [source.crates-io]
