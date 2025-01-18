@@ -42,5 +42,5 @@ Summary:        %{summary}
 
 %install
 %cargo_install
-install -Dpm0644 -t %{buildroot}%{_mandir}/man1 \
-  doc/bat.1
+#install -Dpm0644 -t %{buildroot}%{_mandir}/man1 \
+#  doc/bat.1
