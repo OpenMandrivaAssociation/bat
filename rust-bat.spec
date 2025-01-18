@@ -31,7 +31,8 @@ Summary:        %{summary}
 %package     -n utils
 
 Summary:        %{summary}
-%description -n %{crate} %{_description}
+%description -n utils 
+%{_description}
 
 %files       -n %{crate}
 %license LICENSE-MIT LICENSE-APACHE
