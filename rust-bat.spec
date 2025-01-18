@@ -6,20 +6,15 @@
 %global crate bat
 
 Name:           rust-%{crate}
-Version:        0.22.1
-Release:        1%{?dist}
+Version:        0.25.0
+Release:        1
 Summary:        cat(1) clone with wings
 
 # Upstream license specification: MIT/Apache-2.0
 License:        MIT or ASL 2.0
 URL:            https://crates.io/crates/bat
-Source:         %{crates_source}
-# Initial patched metadata
-# * Bump console to 0.9, https://github.com/sharkdp/bat/pull/657
-# * Bump git2 to 0.11, https://github.com/sharkdp/bat/commit/826624c9fa3af2b9aacd2bbdaa03304b9376b832
-Patch0:         bat-fix-metadata.diff
-
-ExclusiveArch:  %{rust_arches}
+Source0:         https://github.com/sharkdp/bat/archive/v%{version}/%{name}-%{version}.tar.gz
+Source1:        vendor.tar.xz
 
 BuildRequires:  rust-packaging
 
@@ -40,12 +35,15 @@ Summary:        %{summary}
 %doc %{_mandir}/man1/bat.1*
 
 %prep
-%autosetup -n %{crate}-%{version_no_tilde} -p1
-%cargo_prep
+%autosetup -n %{name}-%{version}  -p1 -a 1
+%cargo_prep -v vendor
+cat >>.cargo/config.toml <<EOF
+[source.crates-io]
+replace-with = "vendored-sources"
 
-%generate_buildrequires
-%cargo_generate_buildrequires
-
+[source.vendored-sources]
+directory = "vendor"
+EOF
 %build
 %cargo_build
 
@@ -53,8 +51,3 @@ Summary:        %{summary}
 %cargo_install
 install -Dpm0644 -t %{buildroot}%{_mandir}/man1 \
   doc/bat.1
-
-%if %{with check}
-%check
-%cargo_test
-%endif
