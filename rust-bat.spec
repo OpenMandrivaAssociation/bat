@@ -28,10 +28,10 @@ Summary:        %{summary}
 %description -n %{crate} %{_description}
 
 
-%package     -n utils
+%package     bat-utils
 
 Summary:        %{summary}
-%description -n utils 
+%description bat-utils 
 %{_description}
 
 %files       -n %{crate}
@@ -40,7 +40,7 @@ Summary:        %{summary}
 %{_bindir}/bat
 #doc %{_mandir}/man1/bat.1*
 
-%files -n utils
+%files bat-utils
 %{_datadir}/cargo/registry/bat-%{version}/
 
 %prep
