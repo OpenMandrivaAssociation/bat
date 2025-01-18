@@ -35,6 +35,8 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n bat-%{version}  -p1 -a 1
+%cargo_prep 
+#-v vendor
 install -D -m 644 %{SOURCE2} .cargo/config
 
 %build
