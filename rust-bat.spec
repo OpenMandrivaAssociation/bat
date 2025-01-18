@@ -31,7 +31,7 @@ Summary:        %{summary}
 %license LICENSE-MIT LICENSE-APACHE
 %doc README.md
 %{_bindir}/bat
-%doc %{_mandir}/man1/bat.1*
+#doc %{_mandir}/man1/bat.1*
 
 %prep
 %autosetup -n bat-%{version}  -p1 -a1
