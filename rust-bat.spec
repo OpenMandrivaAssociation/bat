@@ -13,7 +13,7 @@ License:        MIT or ASL 2.0
 URL:            https://crates.io/crates/bat
 Source0:         https://github.com/sharkdp/bat/archive/v%{version}/bat-%{version}.tar.gz
 Source1:        vendor.tar.xz
-Source2:        cargo_config
+#Source2:        cargo_config
 
 BuildRequires:  rust-packaging
 
@@ -34,10 +34,8 @@ Summary:        %{summary}
 %doc %{_mandir}/man1/bat.1*
 
 %prep
-%autosetup -n bat-%{version}  -p1 -a 1
-%cargo_prep 
-#-v vendor
-install -D -m 644 %{SOURCE2} .cargo/config
+%autosetup -n bat-%{version}  -p1 -a1
+%cargo_prep -v vendor
 
 %build
 %cargo_build
