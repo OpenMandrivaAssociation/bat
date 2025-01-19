@@ -22,12 +22,6 @@ Cat(1) clone with wings.}
 
 %description %{_description}
 
-%package     -n bat
-Summary:        %{summary}
-
-%description -n bat %{_description}
-
-
 %package bash-completion
 Summary:        Bash completion for %{name}
 Requires:       %{name} = %{version}
@@ -39,7 +33,7 @@ Bash command line completion support for %{name}.
 
 %package fish-completion
 Summary:        Fish completion for %{name}
-Requires:       %{name} = %{version}
+Recommends:       %{name} = %{version}
 Supplements:    (%{name} and fish)
 BuildArch:      noarch
 
@@ -56,7 +50,7 @@ BuildArch:      noarch
 Zsh command line completion support for %{name}.
 
 
-%files       -n %{crate}
+%files
 %license LICENSE-MIT LICENSE-APACHE
 %doc README.md
 %{_bindir}/bat
