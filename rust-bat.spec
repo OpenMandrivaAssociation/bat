@@ -28,20 +28,52 @@ Summary:        %{summary}
 %description -n %{crate} %{_description}
 
 
-%package     bat-utils
+%package bash-completion
+Summary:        Bash completion for %{name}
+Requires:       %{name} = %{version}
+Supplements:    (%{name} and bash-completion)
+BuildArch:      noarch
 
-Summary:        %{summary}
-%description bat-utils 
-%{_description}
+%description bash-completion
+Bash command line completion support for %{name}.
+
+%package fish-completion
+Summary:        Fish completion for %{name}
+Requires:       %{name} = %{version}
+Supplements:    (%{name} and fish)
+BuildArch:      noarch
+
+%description fish-completion
+Fish command line completion support for %{name}.
+
+%package zsh-completion
+Summary:        Zsh completion for %{name}
+Requires:       %{name} = %{version}
+Supplements:    (%{name} and zsh)
+BuildArch:      noarch
+
+%description zsh-completion
+Zsh command line completion support for %{name}.
+
 
 %files       -n %{crate}
 %license LICENSE-MIT LICENSE-APACHE
 %doc README.md
 %{_bindir}/bat
-#doc %{_mandir}/man1/bat.1*
+%{_mandir}/man1/%{name}.1*
 
-%files bat-utils
-%{_datadir}/cargo/registry/bat-%{version}/
+%files bash-completion
+%{_datadir}/bash-completion/completions/%{name}
+
+%files fish-completion
+%dir %{_datadir}/fish
+%dir %{_datadir}/fish/vendor_completions.d
+%{_datadir}/fish/vendor_completions.d/%{name}.fish
+
+%files zsh-completion
+%dir %{_datadir}/zsh
+%dir %{_datadir}/zsh/site-functions
+%{_datadir}/zsh/site-functions/_%{name}
 
 %prep
 %autosetup -n bat-%{version}  -p1 -a1
@@ -51,6 +83,13 @@ Summary:        %{summary}
 %cargo_build
 
 %install
-%cargo_install
+#cargo_install
+install -D -m 0755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
+install -D -m 0644 $(find target/release/build -name "%{name}.1") "%{buildroot}/%{_mandir}/man1/%{name}.1"
+
+install -D -m 0644 $(find target/release/build -name "%{name}.bash") "%{buildroot}/%{_datadir}/bash-completion/completions/%{name}"
+install -D -m 0644 $(find target/release/build -name "%{name}.fish") "%{buildroot}/%{_datadir}/fish/vendor_completions.d/%{name}.fish"
+install -D -m 0644 $(find target/release/build -name "%{name}.zsh")  "%{buildroot}/%{_datadir}/zsh/site-functions/_%{name}"
+
 #install -Dpm0644 -t %{buildroot}%{_mandir}/man1 \
 #  doc/bat.1
