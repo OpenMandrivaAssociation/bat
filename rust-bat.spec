@@ -84,12 +84,12 @@ Zsh command line completion support for %{name}.
 
 %install
 #cargo_install
-install -D -m 0755 target/release/%{name} %{buildroot}%{_bindir}/bat
-install -D -m 0644 $(find target/release/build -name "%{name}.1") "%{buildroot}/%{_mandir}/man1/bat.1"
+install -D -m 0755 target/release/bat %{buildroot}%{_bindir}/bat
+install -D -m 0644 $(find target/release/build -name "bat.1") "%{buildroot}/%{_mandir}/man1/bat.1"
 
-install -D -m 0644 $(find target/release/build -name "%{name}.bash") "%{buildroot}/%{_datadir}/bash-completion/completions/bat"
-install -D -m 0644 $(find target/release/build -name "%{name}.fish") "%{buildroot}/%{_datadir}/fish/vendor_completions.d/bat.fish"
-install -D -m 0644 $(find target/release/build -name "%{name}.zsh")  "%{buildroot}/%{_datadir}/zsh/site-functions/_bat"
+install -D -m 0644 $(find target/release/build -name "bat.bash") "%{buildroot}/%{_datadir}/bash-completion/completions/bat"
+install -D -m 0644 $(find target/release/build -name "bat.fish") "%{buildroot}/%{_datadir}/fish/vendor_completions.d/bat.fish"
+install -D -m 0644 $(find target/release/build -name "bat.zsh")  "%{buildroot}/%{_datadir}/zsh/site-functions/_bat"
 
 #install -Dpm0644 -t %{buildroot}%{_mandir}/man1 \
 #  doc/bat.1
