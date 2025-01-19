@@ -3,7 +3,7 @@
 
 %global crate bat
 
-Name:           rust-%{crate}
+Name:           bat
 Version:        0.25.0
 Release:        1
 Summary:        cat(1) clone with wings
@@ -22,10 +22,10 @@ Cat(1) clone with wings.}
 
 %description %{_description}
 
-%package     -n %{crate}
+%package     -n bat
 Summary:        %{summary}
 
-%description -n %{crate} %{_description}
+%description -n bat %{_description}
 
 
 %package bash-completion
